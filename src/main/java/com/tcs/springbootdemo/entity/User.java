@@ -1,4 +1,4 @@
-package com.tcs.springbootdemo;
+package com.tcs.springbootdemo.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

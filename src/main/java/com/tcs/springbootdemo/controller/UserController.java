@@ -1,6 +1,7 @@
-package com.tcs.springbootdemo;
+package com.tcs.springbootdemo.controller;
 
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.tcs.springbootdemo.entity.User;
+import com.tcs.springbootdemo.exception.UserNotFoundException;
+import com.tcs.springbootdemo.services.IUserService;
 
 @RestController
 public class UserController { //spring bean, act as request receiver
