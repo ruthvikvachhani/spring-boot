@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.tcs.springbootdemo.entity.User;
@@ -16,10 +17,14 @@ public class UserService implements IUserService
 	@Autowired
 	IUserRepository userRepository;
 
+	
 	@Override
-	public void save(User user) {
+	@Transactional(rollbackFor = Exception.class,
+	noRollbackFor = IllegalStateException.class)
+	public void save(User user) throws Exception {
 		userRepository.save(user);
 		System.out.println("saved");
+		throw new IllegalStateException();
 	}
 
 	@Override
