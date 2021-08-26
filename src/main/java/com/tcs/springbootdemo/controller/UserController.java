@@ -2,9 +2,12 @@ package com.tcs.springbootdemo.controller;
 
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,7 @@ public class UserController { //spring bean, act as request receiver
 	@Autowired  //DI
 	IUserService userService;
 	
+	
 	@GetMapping("/user")
 	private Iterable<User> getUsers() {
 		return userService.getAllUsers();
@@ -36,14 +40,16 @@ public class UserController { //spring bean, act as request receiver
 		return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
 	}
 	
+	@Transactional
 	@PostMapping("/user")
-	private void saveUser(@RequestBody User user) {
+	private void saveUser(@RequestBody @Valid User user) {
 		userService.save(user);
 		System.out.println(user.getFirstName());
+		throw new RuntimeException();
 	}
-	@PutMapping("/putUser")
-	private void updateUser(@RequestBody User user) {
-		userService.save(user);
+	@PutMapping("/user/{id}")
+	private void updateUser(@RequestBody User user,@PathVariable("id") Integer id ) {
+		userService.update(user,id);
 		System.out.println(user.getFirstName());
 	}
 	

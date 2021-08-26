@@ -13,4 +13,6 @@ public interface IUserService {
 	Optional<User> getUser(Integer id);
 
 	void deleteUser(Integer id);
+
+	void update(User user, Integer id);
 }
