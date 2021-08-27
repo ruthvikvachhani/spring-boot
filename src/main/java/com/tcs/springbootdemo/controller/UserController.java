@@ -3,7 +3,7 @@ package com.tcs.springbootdemo.controller;
 import java.util.Optional;
 
 import javax.validation.Valid;
-
+import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class UserController { //spring bean, act as request receiver
 	@Autowired  //DI
 	IUserService userService;
 	
-	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(UserController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	
 	@GetMapping()
